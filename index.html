@@ -528,6 +528,25 @@
             opacity: 0.8;
         }
 
+        /* Estilo para el contenedor del video */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-top: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
         /* Responsive */
         @media (max-width: 1024px) {
             .sidebar {
@@ -835,7 +854,16 @@
                             <i class="fas fa-nose"></i>
                             <h4>1.1.1 Belladonna atropa</h4>
                             <p>Estructura respiratoria principal de la cara</p>
-                            <a href="https://www.youtube.com/watch?v=NZiVguWvaPY" onclick="showContent('glositis-belladona')">Ver video</a> 
+                            
+                            <div class="video-container">
+                                <iframe 
+                                    src="https://www.youtube.com/embed/NZiVguWvaPY" 
+                                    title="Video explicativo Belladonna"
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
                         </div>
                         <div class="feature-item">
                             <i class="fas fa-teeth"></i>
