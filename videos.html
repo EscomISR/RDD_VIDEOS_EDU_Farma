@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videoteca - Farmacodinamia Comparada I</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- ESTILOS ORIGINALES DEL HEADER (Copiados de index.html) --- */
+        :root {
+            --color-primario: #2b024a;
+            --color-secundario: #e98300;
+            --color-terciario: #2a56a0;
+            --color-texto: #333;
+            --color-fondo: #f8f9fa;
+            --color-blanco: #fff;
+            --color-gris: #e0e0e0;
+            --color-gris-claro: #f5f5f5;
+            --color-gris-oscuro: #666;
+            --sombra: 0 5px 15px rgba(0,0,0,0.1);
+            --sombra-hover: 0 8px 25px rgba(0,0,0,0.2);
+            --radio-borde: 12px;
+            --transicion: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --header-height: 210px; 
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: var(--color-fondo);
+            color: var(--color-texto);
+            padding-top: var(--header-height);
+            line-height: 1.7;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        a {
+            text-decoration: none;
+            transition: var(--transicion);
+        }
+
+        /* HEADER */
+        .main-header {
+            background: var(--color-primario);
+            color: var(--color-blanco);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: var(--sombra);
+            height: var(--header-height);
+            display: flex;
+            align-items: center; 
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            flex-direction: column; 
+            gap: 0.5rem;
+            width: 100%;
+        }
+
+        .institutional-banner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .logo-left img {
+            height: 120px;
+            width: auto;
+            display: block;
+        }
+
+        .header-text {
+            text-align: center;
+            flex: 1;
+            padding: 0 1rem;
+        }
+
+        .header-text h2 {
+            font-size: 1.1rem;
+            margin: 0;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .header-text h3 {
+            font-size: 0.95rem;
+            margin: 0.2rem 0;
+            font-weight: 500;
+            color: var(--color-gris-claro);
+        }
+
+        .header-text p {
+            font-size: 0.85rem;
+            margin: 0;
+            color: var(--color-secundario);
+            font-style: italic;
+        }
+
+        .logo-right img {
+            height: 100px;
+            width: auto;
+            display: block;
+            padding: 2px;
+        }
+
+        .nav-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            height: 40px;
+            width: 40px;
+            background: var(--color-secundario);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--color-blanco);
+        }
+
+        .logo-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--color-blanco);
+        }
+
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .main-nav a {
+            color: var(--color-blanco);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            transition: var(--transicion);
+        }
+
+        .main-nav a:hover, .main-nav a.active {
+            background: var(--color-secundario);
+        }
+
+        /* --- ESTILOS DE LA VIDEOTECA (GRID Y MODAL) --- */
+        .main-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .page-intro {
+            text-align: center;
+            margin-bottom: 3rem;
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radio-borde);
+            box-shadow: var(--sombra);
+            border-top: 5px solid var(--color-terciario);
+        }
+
+        .page-intro h1 {
+            color: var(--color-primario);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .page-intro p {
+            color: var(--color-gris-oscuro);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .unit-section {
+            background: white;
+            border-radius: var(--radio-borde);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--sombra);
+            border-left: 5px solid var(--color-secundario);
+        }
+
+        .unit-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--color-gris);
+        }
+
+        .unit-header i {
+            font-size: 1.5rem;
+            color: var(--color-primario);
+        }
+
+        .unit-header h2 {
+            font-size: 1.5rem;
+            color: var(--color-primario);
+            margin: 0;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .video-card {
+            background: #fff;
+            border: 1px solid var(--color-gris);
+            border-radius: var(--radio-borde);
+            overflow: hidden;
+            transition: var(--transicion);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--sombra-hover);
+            border-color: var(--color-secundario);
+        }
+
+        .card-thumbnail {
+            height: 150px;
+            background: linear-gradient(135deg, var(--color-primario), #4a1a75);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .card-thumbnail i.fa-play-circle {
+            font-size: 3.5rem;
+            color: rgba(255,255,255,0.8);
+            transition: 0.3s;
+        }
+
+        .video-card:hover .card-thumbnail i.fa-play-circle {
+            transform: scale(1.1);
+            color: var(--color-secundario);
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        .card-content {
+            padding: 1.2rem;
+        }
+
+        .card-content h3 {
+            font-size: 1rem;
+            color: var(--color-primario);
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .card-content p {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0.8rem;
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--color-gris-claro);
+            color: #555;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Modal */
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+        .video-modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            width: 90%;
+            max-width: 1000px;
+            aspect-ratio: 16/9;
+            background: #000;
+            position: relative;
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(255,255,255,0.2);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-weight: bold;
+        }
+        .close-btn:hover {
+            color: var(--color-secundario);
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+
+        /* Responsive del Header (Mismo que original) */
+        @media (max-width: 900px) {
+            :root {
+                --header-height: 240px;
+            }
+
+            .institutional-banner {
+                flex-wrap: wrap;
+                justify-content: center;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .header-text {
+                order: 3;
+                width: 100%;
+            }
+
+            .logo-left, .logo-right {
+                order: 1;
+            }
+
+            .main-header {
+                height: auto;
+                padding-bottom: 1rem;
+            }
+
+            body {
+                padding-top: 250px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --header-height: 80px;
+            }
+
+            .institutional-banner {
+                display: none;
+            }
+
+            body {
+                padding-top: 90px;
+            }
+
+            .main-nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-container">
+            
+            <div class="institutional-banner">
+                <div class="logo-left">
+                    <img src="logo_IPN.png" alt="Logo IPN" title="Instituto Politécnico Nacional">
+                </div>
+                
+                <div class="header-text">
+                    <h2>Instituto Politécnico Nacional</h2>
+                    <h3>Escuela Nacional de Medicina y Homeopatía</h3>
+                    <h3>Carrera: Médico Cirujano y Homeópata</h3>
+                    <h3>Unidad de Aprendizaje: Farmacodinamia Comparada I</h3>
+                </div>
+                
+                <div class="logo-right">
+                    <img src="logo_ENMH.png" alt="Logo ENMH" title="Escuela Nacional de Medicina y Homeopatía">
+                </div>
+            </div>
+
+            <div class="nav-row">
+                <div class="logo-container">
+                    <div class="logo">
+                        <i class="fas fa-video"></i> 
+                    </div>
+                    <div class="logo-text">Videoteca <span>Digital</span></div>
+                </div>
+                
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="#" class="active">Galería de Videos</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-container">
+
+        <div class="page-intro">
+            <h1>Material Audiovisual Complementario</h1>
+            <p>PLACEHOLDER</p>
+        </div>
+
+        <section class="unit-section">
+            <div class="unit-header">
+                <i class="fas fa-virus"></i>
+                <h2>1.1 Glositis</h2>
+            </div>
+            <div class="video-grid">
+                <div class="video-card" onclick="openVideo('https://www.youtube.com/embed/NZiVguWvaPY')">
+                    <div class="card-thumbnail"><i class="fas fa-play-circle"></i></div>
+                    <div class="card-content">
+                        <h3>1.1.1 Belladonna Atropa</h3>
+                        <p>PLACEHOLDER</p>
+                        <span class="tag">Glositis</span>
+                    </div>
+                </div>
+                <div class="video-card" onclick="openVideo('PLACEHOLDER')">
+                    <div class="card-thumbnail"><i class="fas fa-play-circle"></i></div>
+                    <div class="card-content">
+                        <h3>1.1.2 Bryonia Alba</h3>
+                        <p>PLACEHOLDER</p>
+                        <span class="tag">Glositis</span>
+                    </div>
+                </div>
+                <div class="video-card" onclick="openVideo('PLACEHOLDER')">
+                    <div class="card-thumbnail"><i class="fas fa-play-circle"></i></div>
+                    <div class="card-content">
+                        <h3>PLACEHOLDER</h3>
+                        <p>PLACEHOLDER</p>
+                        <span class="tag">Glositis</span>
+                    </div>
+                </div>
+                <div class="video-card" onclick="openVideo('PLACEHOLDER')">
+                    <div class="card-thumbnail"><i class="fas fa-play-circle"></i></div>
+                    <div class="card-content">
+                        <h3>1.1.4 Sulphur</h3>
+                        <p>PLACEHOLDER</p>
+                        <span class="tag">Glositis</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="unit-section">
+            <div class="unit-header">
+                <i class="fas fa-teeth-open"></i>
+                <h2>1.2 Estomatitis</h2>
+            </div>
+            <div class="video-grid">
+                <div class="video-card" onclick="openVideo('PLACEHOLDER')">
+                    <div class="card-thumbnail"><i class="fas fa-play-circle"></i></div>
+                    <div class="card-content">
+                        <h3>1.2.1 Baptisia Tinctoria</h3>
+                        <p>PLACEHOLDER</p>
+                        <span class="tag">Estomatitis</span>
+                    </div>
+                </div>
+                <div class="video-card" onclick="openVideo('PLACEHOLDER')">
+                    <div class="card-thumbnail"><i class="fas fa-play-circle"></i></div>
+                    <div class="card-content">
+                        <h3>1.2.2 Borax Venetta</h3>
+                        <p>PLACEHOLDER</p>
+                        <span class="tag">Estomatitis</span>
+                    </div>
+                </div>
+                <div class="video-card" onclick="openVideo('PLACEHOLDER')">
+                    <div class="card-thumbnail"><i class="fas fa-play-circle"></i></div>
+                    <div class="card-content">
+                        <h3>1.2.3 Kali Bichromicum</h3>
+                        <p>PLACEHOLDER</p>
+                        <span class="tag">Estomatitis</span>
+                    </div>
+                </div>
+                <div class="video-card" onclick="openVideo('PLACEHOLDER')">
+                    <div class="card-thumbnail"><i class="fas fa-play-circle"></i></div>
+                    <div class="card-content">
+                        <h3>1.2.4 Mercurio Vivo</h3>
+                        <p>PLACEHOLDER</p>
+                        <span class="tag">Estomatitis</span>
+                    </div>
+                </div>
+                <div class="video-card" onclick="openVideo('PLACEHOLDER')">
+                    <div class="card-thumbnail"><i class="fas fa-play-circle"></i></div>
+                    <div class="card-content">
+                        <h3>1.2.5 Nitricum Acidum</h3>
+                        <p>PLACEHOLDER</p>
+                        <span class="tag">Estomatitis</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="unit-section">
+            <div class="unit-header">
+                <i class="fas fa-tooth"></i>
+                <h2>1.3 Gingivitis</h2>
+            </div>
+            <div class="video-grid">
+                <div class="video-card" onclick="openVideo('PLACEHOLDER')">
+                    <div class="card-thumbnail"><i class="fas fa-play-circle"></i></div>
+                    <div class="card-content">
+                        <h3>1.3.1 Arnica Montana</h3>
+                        <p>PLACEHOLDER</p>
+                        <span class="tag">Gingivitis</span>
+                    </div>
+                </div>
+                <div class="video-card" onclick="openVideo('PLACEHOLDER')">
+                    <div class="card-thumbnail"><i class="fas fa-play-circle"></i></div>
+                    <div class="card-content">
+                        <h3>1.3.2 Echinacea Angustifolia</h3>
+                        <p>PLACEHOLDER</p>
+                        <span class="tag">Gingivitis</span>
+                    </div>
+                </div>
+                <div class="video-card" onclick="openVideo('PLACEHOLDER')">
+                    <div class="card-thumbnail"><i class="fas fa-play-circle"></i></div>
+                    <div class="card-content">
+                        <h3>1.3.3 Mercurius Corrosivus</h3>
+                        <p>PLACEHOLDER</p>
+                        <span class="tag">Gingivitis</span>
+                    </div>
+                </div>
+                <div class="video-card" onclick="openVideo('PLACEHOLDER')">
+                    <div class="card-thumbnail"><i class="fas fa-play-circle"></i></div>
+                    <div class="card-content">
+                        <h3>1.3.4 Muriaticum Acidum</h3>
+                        <p>PLACEHOLDER</p>
+                        <span class="tag">Gingivitis</span>
+                    </div>
+                </div>
+                 <div class="video-card" onclick="openVideo('PLACEHOLDER')">
+                    <div class="card-thumbnail"><i class="fas fa-play-circle"></i></div>
+                    <div class="card-content">
+                        <h3>1.3.5 Silicea Terra</h3>
+                        <p>PLACEHOLDER</p>
+                        <span class="tag">Gingivitis</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="unit-section">
+            <div class="unit-header">
+                <i class="fas fa-bone"></i>
+                <h2>1.4 Parodontitis</h2>
+            </div>
+            <div class="video-grid">
+                <div class="video-card" onclick="openVideo('PLACEHOLDER')">
+                    <div class="card-thumbnail"><i class="fas fa-play-circle"></i></div>
+                    <div class="card-content">
+                        <h3>1.4.1 Belladonna Atropa</h3>
+                        <p>PLACEHOLDER</p>
+                        <span class="tag">Parodontitis</span>
+                    </div>
+                </div>
+                <div class="video-card" onclick="openVideo('PLACEHOLDER')">
+                    <div class="card-thumbnail"><i class="fas fa-play-circle"></i></div>
+                    <div class="card-content">
+                        <h3>1.4.2 Calcarea Carbonica</h3>
+                        <p>PLACEHOLDER</p>
+                        <span class="tag">Parodontitis</span>
+                    </div>
+                </div>
+                <div class="video-card" onclick="openVideo('PLACEHOLDER')">
+                    <div class="card-thumbnail"><i class="fas fa-play-circle"></i></div>
+                    <div class="card-content">
+                        <h3>1.4.3 Chamomilla Matricaria</h3>
+                        <p>PLACEHOLDER</p>
+                        <span class="tag">Parodontitis</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="unit-section">
+            <div class="unit-header">
+                <i class="fas fa-hamburger"></i>
+                <h2>1.5 Síndrome Dispéptico</h2>
+            </div>
+            <div class="video-grid">
+                <div class="video-card" onclick="openVideo('PLACEHOLDER')">
+                    <div class="card-thumbnail"><i class="fas fa-play-circle"></i></div>
+                    <div class="card-content">
+                        <h3>1.5.1 Antimonium Crudum</h3>
+                        <p>PLACEHOLDER</p>
+                        <span class="tag">Dispepsia</span>
+                    </div>
+                </div>
+                <div class="video-card" onclick="openVideo('PLACEHOLDER')">
+                    <div class="card-thumbnail"><i class="fas fa-play-circle"></i></div>
+                    <div class="card-content">
+                        <h3>1.5.2 Arsenicum Album</h3>
+                        <p>PLACEHOLDER</p>
+                        <span class="tag">Dispepsia</span>
+                    </div>
+                </div>
+                <div class="video-card" onclick="openVideo('PLACEHOLDER')">
+                    <div class="card-thumbnail"><i class="fas fa-play-circle"></i></div>
+                    <div class="card-content">
+                        <h3>1.5.3 Bismuthum</h3>
+                        <p>PLACEHOLDER</p>
+                        <span class="tag">Dispepsia</span>
+                    </div>
+                </div>
+                <div class="video-card" onclick="openVideo('PLACEHOLDER')">
+                    <div class="card-thumbnail"><i class="fas fa-play-circle"></i></div>
+                    <div class="card-content">
+                        <h3>1.5.4 Ipecacuanha</h3>
+                        <p>PLACEHOLDER</p>
+                        <span class="tag">Dispepsia</span>
+                    </div>
+                </div>
+                <div class="video-card" onclick="openVideo('PLACEHOLDER')">
+                    <div class="card-thumbnail"><i class="fas fa-play-circle"></i></div>
+                    <div class="card-content">
+                        <h3>1.5.5 Phosphorus</h3>
+                        <p>PLACEHOLDER</p>
+                        <span class="tag">Dispepsia</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <div id="videoModal" class="video-modal" onclick="closeVideo(event)">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeVideo(event)">&times; Cerrar</button>
+            <iframe id="modalFrame" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script>
+        function openVideo(url) {
+            if (url === 'PLACEHOLDER') {
+                alert('Video no disponible. Aquí iría el video correspondiente.');
+                return;
+            }
+            const modal = document.getElementById('videoModal');
+            const frame = document.getElementById('modalFrame');
+            frame.src = url + "?autoplay=1";
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeVideo(event) {
+            // Cierra si se hace clic en el fondo oscuro (videoModal) o en el botón X
+            if (event.target.id === 'videoModal' || event.target.classList.contains('close-btn')) {
+                const modal = document.getElementById('videoModal');
+                const frame = document.getElementById('modalFrame');
+                modal.classList.remove('active');
+                frame.src = ""; // Detener video
+                document.body.style.overflow = 'auto'; 
+            }
+        }
+    </script>
+</body>
+</html>
