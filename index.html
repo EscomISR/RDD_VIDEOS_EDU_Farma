@@ -518,14 +518,81 @@
         .main-footer {
             background: var(--color-primario);
             color: var(--color-blanco);
-            padding: 2rem 0;
+            padding: 3rem 1rem; /* Más espacio vertical */
             margin-left: 340px;
             text-align: center;
+            border-top: 5px solid var(--color-secundario); /* Detalle visual extra */
         }
 
-        .main-footer p {
-            margin-bottom: 0;
+        .footer-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-secundario);
+        }
+
+        .footer-school-info p {
+            margin-bottom: 0.2rem;
+            line-height: 1.4;
+        }
+
+        .address {
+            font-size: 0.85rem;
             opacity: 0.8;
+            font-style: italic;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Estilos Creative Commons */
+        .cc-license {
+            margin-top: 1rem;
+        }
+        
+        .cc-license img {
+            margin-bottom: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .cc-license img:hover {
+            transform: scale(1.05);
+        }
+
+        .cc-text, .cc-text a {
+            font-size: 0.75rem;
+            color: var(--color-gris);
+            text-decoration: none;
+        }
+
+        .cc-text a:hover {
+            color: var(--color-secundario);
+            text-decoration: underline;
+        }
+
+        /* Ajuste Responsive para el footer */
+        @media (max-width: 1024px) {
+            .main-footer {
+                margin-left: 320px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-footer {
+                margin-left: 0;
+                padding-bottom: 4rem; /* Espacio extra si hay navegación inferior móvil */
+            }
         }
 
         /* Estilo para el contenedor del video */
@@ -682,7 +749,7 @@
                 <div class="header-text">
                     <h2>Instituto Politécnico Nacional</h2>
                     <h3>Escuela Nacional de Medicina y Homeopatía</h3>
-                    <h3>Carrera: Médico Cirujano y Homeópata</h3>
+                    <h3>Carrera: Licenciatura en Médico Cirujano y Homeópata</h3>
                     <h3>Unidad de Aprendizaje: Farmacodinamia Comparada I</h3>
                 </div>
                 
@@ -1012,7 +1079,24 @@
 
     <!-- Footer -->
     <footer class="main-footer">
-        <p>&copy; 2024 Anatomía Facial Universitaria. Material educativo para estudiantes de medicina.</p>
+        <div class="footer-container">
+            <p class="footer-title"><strong>Recurso Didáctico Digital: Farmacodinamia Comparada I</strong></p>
+            
+            <div class="footer-school-info">
+                <p><strong>Escuela Nacional de Medicina y Homeopatía - IPN</strong></p>
+                <p class="address">Guillermo Massieu Helguera 239, La Escalera, Ticomán,<br>Gustavo A. Madero, 07320 Ciudad de México, CDMX</p>
+            </div>
+
+            <p class="copyright">Desarrollado para fines educativos - &copy; 2025 | Derechos Reservados</p>
+            
+            <div class="cc-license">
+                <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">
+                    <img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" />
+                </a>
+                <br />
+                <span class="cc-text">Esta obra está bajo una <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">Licencia Creative Commons Atribución-NoComercial-SinDerivadas 4.0 Internacional</a>.</span>
+            </div>
+        </div>
     </footer>
 
     <script>

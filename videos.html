@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- ESTILOS ORIGINALES DEL HEADER (Copiados de index.html) --- */
+        /* Variables y reset */
         :root {
             --color-primario: #2b024a;
             --color-secundario: #e98300;
@@ -357,7 +357,84 @@
             border-radius: 8px;
         }
 
-        /* Responsive del Header (Mismo que original) */
+        /* Footer */
+        .main-footer {
+            background: var(--color-primario);
+            color: var(--color-blanco);
+            padding: 3rem 1rem;
+            text-align: center;
+            border-top: 5px solid var(--color-secundario);
+            width: 100%;
+            margin-top: 4rem; /* Separación con el contenido de videos */
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-secundario);
+        }
+
+        .footer-school-info p {
+            margin-bottom: 0.2rem;
+            line-height: 1.4;
+        }
+
+        .address {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            font-style: italic;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Estilos Creative Commons */
+        .cc-license {
+            margin-top: 1rem;
+        }
+        
+        .cc-license img {
+            margin-bottom: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .cc-license img:hover {
+            transform: scale(1.05);
+        }
+
+        .cc-text, .cc-text a {
+            font-size: 0.75rem;
+            color: var(--color-gris);
+            text-decoration: none;
+        }
+
+        .cc-text a:hover {
+            color: var(--color-secundario);
+            text-decoration: underline;
+        }
+
+        /* Ajustes Responsive */
+        @media (max-width: 768px) {
+            .main-footer {
+                padding: 2rem 1rem;
+            }
+        }
+
+        /* Responsive del Header */
         @media (max-width: 900px) {
             :root {
                 --header-height: 240px;
@@ -461,12 +538,6 @@
                 <h2>Síndromes de aparato digestivo</h2>
             </div>
             <div class="video-grid">
-                <div class="video-card" onclick="openVideo('https://youtu.be/skjhF8zFN8Y')">
-                    <div class="card-thumbnail" style="background: url('https://img.youtube.com/vi/NZiVguWvaPY/hqdefault.jpg') no-repeat center center / cover;">
-                        <i class="fas fa-play-circle"></i>
-                    </div>
-                </div>
-                
                 <div class="video-card" onclick="openVideo('https://youtu.be/NZiVguWvaPY')">
                     <div class="card-thumbnail" style="background: url('https://img.youtube.com/vi/NZiVguWvaPY/hqdefault.jpg') no-repeat center center / cover;"> 
                         <i class="fas fa-play-circle"></i>
@@ -692,6 +763,27 @@
             <iframe id="modalFrame" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
     </div>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <p class="footer-title"><strong>Recurso Didáctico Digital: Farmacodinamia Comparada I</strong></p>
+            
+            <div class="footer-school-info">
+                <p><strong>Escuela Nacional de Medicina y Homeopatía - IPN</strong></p>
+                <p class="address">Guillermo Massieu Helguera 239, La Escalera, Ticomán,<br>Gustavo A. Madero, 07320 Ciudad de México, CDMX</p>
+            </div>
+
+            <p class="copyright">Desarrollado para fines educativos - &copy; 2025 | Derechos Reservados</p>
+            
+            <div class="cc-license">
+                <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">
+                    <img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" />
+                </a>
+                <br />
+                <span class="cc-text">Esta obra está bajo una <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">Licencia Creative Commons Atribución-NoComercial-SinDerivadas 4.0 Internacional</a>.</span>
+            </div>
+        </div>
+    </footer>
 
     <script>
         function openVideo(url) {
