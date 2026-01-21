@@ -52,6 +52,7 @@
         p {
             margin-bottom: 1.5rem;
             font-size: 1.1rem;
+            text-align: justify;
         }
 
         a {
@@ -60,7 +61,7 @@
             transition: var(--transicion);
         }
 
-        /* --- HEADER --- */
+        /* Header */
         .main-header {
             background: var(--color-primario);
             color: var(--color-blanco);
@@ -193,6 +194,24 @@
 
         .main-nav a:hover, .main-nav a.active {
             background: var(--color-secundario);
+        }
+
+        /* Botones Secundarios */
+        .main-nav a.btn-small {
+            font-size: 0.75rem;
+            padding: 0.4rem 0.8rem;
+            font-weight: 400;
+            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .main-nav a.btn-small:hover {
+            background: var(--color-blanco);
+            color: var(--color-primario);
+            border-color: var(--color-blanco);
         }
 
         /* Layout principal */
@@ -518,10 +537,10 @@
         .main-footer {
             background: var(--color-primario);
             color: var(--color-blanco);
-            padding: 3rem 1rem; /* Más espacio vertical */
+            padding: 3rem 1rem;
             margin-left: 340px;
             text-align: center;
-            border-top: 5px solid var(--color-secundario); /* Detalle visual extra */
+            border-top: 5px solid var(--color-secundario);
         }
 
         .footer-container {
@@ -591,7 +610,7 @@
         @media (max-width: 768px) {
             .main-footer {
                 margin-left: 0;
-                padding-bottom: 4rem; /* Espacio extra si hay navegación inferior móvil */
+                padding-bottom: 4rem;
             }
         }
 
@@ -612,6 +631,98 @@
             left: 0;
             width: 100%;
             height: 100%;
+        }
+
+        /* Modal de Video */
+        .video-modal {
+            display: none;
+            position: fixed;
+            z-index: 3000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.85);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-modal.show {
+            opacity: 1;
+        }
+
+        /* Contenedor del contenido del modal */
+        .modal-content-wrapper {
+            position: relative;
+            width: 90%;
+            max-width: 900px;
+            background: transparent;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* Botón de cerrar (X) */
+        .close-modal {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+            z-index: 3001;
+        }
+
+        .close-modal:hover {
+            color: var(--color-secundario);
+        }
+
+        /* Estilos de la miniatura (trigger) */
+        .video-trigger {
+            position: relative;
+            cursor: pointer;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            aspect-ratio: 16/9;
+            background-color: #000;
+        }
+
+        .video-trigger img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            transition: transform 0.4s, opacity 0.4s;
+        }
+
+        .video-trigger:hover img {
+            transform: scale(1.05);
+            opacity: 0.6;
+        }
+
+        /* Icono de Play sobre la imagen */
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 3rem;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
+            pointer-events: none;
+            transition: transform 0.3s;
+        }
+
+        .video-trigger:hover .play-icon {
+            transform: translate(-50%, -50%) scale(1.2);
+            color: var(--color-secundario);
         }
 
         /* Responsive */
@@ -776,6 +887,24 @@
                         <li><a href="#">Unidad 2</a></li>
                         <li><a href="#">Unidad 3</a></li>
                         <li><a href="#">Unidad 4</a></li>
+                        
+                        <li style="margin-left: 10px; border-left: 1px solid rgba(255,255,255,0.2); height: 20px;"></li>
+
+                        <li>
+                            <a href="#" class="btn-small">
+                                <i class="fas fa-users"></i> Colaboradores
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="btn-small">
+                                <i class="fas fa-book-open"></i> Bibliografía
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="btn-small">
+                                <i class="fas fa-info-circle"></i> Manual
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -905,10 +1034,8 @@
             <!-- Contenido de bienvenida -->
             <section class="content-section active" id="welcome">
                 <div class="welcome-hero">
-                    <h1>Síndromes de aparato digestivo</h1>
-                    <p><p style="text-align: justify;">Integrar el uso de los medicamentos homeopáticos en el abordaje de los síndromes digestivos, respiratorios y cardiovasculares dentro del primer nivel de atención,
-                       mediante un análisis clínico fundamentado que permita al estudiante de medicina desarrollar criterios terapéuticos integrales, fortalecer la toma de decisiones y 
-                       ampliar su visión del manejo del paciente desde una perspectiva preventiva y resolutiva.</p></p>
+                    <h1>Síndromes de Aparato Digestivo</h1>
+                    <p>Integrar el uso de los medicamentos homeopáticos en el abordaje de los síndromes digestivos, respiratorios y cardiovasculares dentro del primer nivel de atención, mediante un análisis clínico fundamentado que permita al estudiante de medicina desarrollar criterios terapéuticos integrales, fortalecer la toma de decisiones y ampliar su visión del manejo del paciente desde una perspectiva preventiva y resolutiva.</p>
                 </div>
 
                 <div class="content-card">
@@ -916,43 +1043,39 @@
                         <i class="fas fa-graduation-cap content-icon"></i>
                         Objetivos de Aprendizaje
                     </h2>
-                    <p>Analizar y comparar la patogenesia de los medicamentos homeopáticos empleados en los síndromes digestivos, a partir de su composición y sintomatología, mediante la consulta del material audiovisual, con el fin de fortalecer la comprensión clínica y
-                       el razonamiento terapéutico del estudiante.</p>
+                    <p>Analizar y comparar la patogenesia de los medicamentos homeopáticos empleados en los síndromes digestivos, a partir de su composición y sintomatología, mediante la consulta del material audiovisual, con el fin de fortalecer la comprensión clínica y el razonamiento terapéutico del estudiante.</p>
+                </div>
+
+                <div class="content-card">
+                    <h2>
+                        <i class="fas fa-stethoscope content-icon"></i>
+                        1.1 Glositis
+                    </h2>
+                    <p>La glositis se caracteriza por un proceso inflamatorio de la lengua que provoca enrojecimiento, dolor, hinchazón y cambios en su textura, afectando funciones como la masticación y la deglución. Puede originarse por deficiencias nutricionales, infecciones, alergias, traumatismos o enfermedades sistémicas.</p>
+
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/44ObwgQjDMI" 
+                            title="Video explicativo Glositis"
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
                     
                     <div class="features-grid">
                         <div class="feature-item">
-                            <i class="fas fa-nose"></i>
-                            <h4>1.1 Glositis</h4>
-                            <p>La glositis se caracteriza por un proceso inflamatorio de la lengua que provoca enrojecimiento, dolor, hinchazón y cambios en su textura, afectando funciones como la masticación y la deglución.
-                               Puede originarse por deficiencias nutricionales, infecciones, alergias, traumatismos o enfermedades sistémicas.</p>
-                            
-                            <div class="video-container">
-                                <iframe 
-                                    src="https://www.youtube.com/embed/=44ObwgQjDMI" 
-                                    title="Video explicativo Glositis"
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                    allowfullscreen>
-                                </iframe>
-                            </div>
-                        </div>
-                    <div class="features-grid">
-                        <div class="feature-item">
-                            <i class="fas fa-nose"></i>
+                            <i class="fas fa-head-side-cough"></i>
                             <h4>1.1.1 Belladonna atropa</h4>
                             <p>Estructura respiratoria principal de la cara</p>
                             
-                            <div class="video-container">
-                                <iframe 
-                                    src="https://www.youtube.com/embed/NZiVguWvaPY" 
-                                    title="Video explicativo Belladonna"
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                    allowfullscreen>
-                                </iframe>
+                            <div class="video-trigger" onclick="openVideoModal('NZiVguWvaPY')">
+                                <img src="https://img.youtube.com/vi/NZiVguWvaPY/hqdefault.jpg" alt="Ver video Belladonna">
+                                <div class="play-icon">
+                                    <i class="fas fa-play-circle"></i>
+                                </div>
                             </div>
                         </div>
-
                         <div class="feature-item">
                             <i class="fas fa-teeth"></i>
                             <h4>1.1.2 Bryonia alba</h4>
@@ -1200,6 +1323,56 @@
                 sidebar.classList.remove('active');
             }
         });
+
+        /* Funciones para el modal de video */
+        function openVideoModal(videoId) {
+            const modal = document.getElementById('videoModal');
+            const iframe = document.getElementById('modalFrame');
+            
+            // Mostramos el modal usando Flexbox
+            modal.style.display = 'flex';
+            
+            // Pequeño timeout para permitir la transición de opacidad
+            setTimeout(() => {
+                modal.classList.add('show');
+            }, 10);
+            
+            // Cargamos el video en el iframe con autoplay activado
+            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const iframe = document.getElementById('modalFrame');
+            
+            // Quitamos la clase visual
+            modal.classList.remove('show');
+            
+            // Esperamos a que termine la animación para ocultar y limpiar
+            setTimeout(() => {
+                modal.style.display = 'none';
+                // IMPORTANTE: Limpiar el src detiene el video y el audio
+                iframe.src = "";
+            }, 300);
+        }
+
+        // Cerrar con tecla Escape
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                closeVideoModal();
+            }
+        });
     </script>
+
+    <!-- Modal de Video -->
+    <div id="videoModal" class="video-modal" onclick="closeVideoModal()">
+        <div class="modal-content-wrapper" onclick="event.stopPropagation()">
+            <span class="close-modal" onclick="closeVideoModal()">&times;</span>
+            <div class="video-container">
+                <iframe id="modalFrame" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
